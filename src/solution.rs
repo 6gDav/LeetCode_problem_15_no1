@@ -1,3 +1,5 @@
+use std::vec;
+
 pub struct Solution;
 
 impl Solution {
@@ -21,8 +23,25 @@ impl Solution {
         }
 
         if !cont_minus {
-            return  res;
-        }  
+            return res;
+        }
+
+        let mut dummy_nums = nums.clone();
+
+        for ind in 0..dummy_nums.len() {
+            for ind2 in 1..dummy_nums.len() {
+                for ind3 in 1..dummy_nums.len() {
+                    if dummy_nums[ind] + dummy_nums[ind2] + dummy_nums[ind3] == 0 {
+                        let new_res_el = vec![dummy_nums[ind], dummy_nums[ind2], dummy_nums[ind3]];
+
+                        if !res.contains(&new_res_el) {
+                            res.push(new_res_el);
+                        }
+                    }
+                }
+            }
+        }
+
         res
     }
 }
